@@ -18,7 +18,7 @@ Welcome! Please add your name and today's date to the table below by submitting 
 | 2C   | [Your Name]    | 2025-08-09        |
 | 3A   | [Your Name]    | 2025-08-09        |
 | 3B   | [Your Name]    | 2025-08-09        |
-| 3C   | [Your Name]    | 2025-08-09       |
+| 3C   | teacher01    | 2025-08-09       |
 
 ### How to Participate
 1. Fork this repository.
