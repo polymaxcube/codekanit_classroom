@@ -6,7 +6,7 @@ Welcome! Please add your name and today's date to the table below by submitting 
 
 ## Participation Table
 
-### คอร์สเรียนเว็บ Unity3d & BabylonJs
+### คอร์สเรียนเว็บ Unity3d & BabylonJs Course
 
 
 | Seat | Name           | Date (YYYY-MM-DD) |
