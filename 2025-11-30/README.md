@@ -11,7 +11,7 @@ Welcome! Please add your name and today's date to the table below by submitting 
 
 | Seat | Name           | Date (YYYY-MM-DD) |
 |------|----------------|-------------------|
-| 1A   | [Your Name]    | 2025-11-30        |
+| 1A   | [Ryuji]    | 2025-11-30        |
 | 1B   | [Your Name]    | 2025-11-30        |
 | 1C   | [Your Name]    | 2025-11-30        |
 | 2A   | [Your Name]    | 2025-11-30        |
