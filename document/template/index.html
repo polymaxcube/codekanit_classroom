@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babylon.js GUI From Snippet</title>
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
+    
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById("renderCanvas");
+        const engine = new BABYLON.Engine(canvas, true);
+
+        // เปลี่ยนเป็น async function เพื่อรองรับ await
+        const createScene = async function () {
+            const scene = new BABYLON.Scene(engine);
+
+            // สร้างกล้องและแสงพื้นฐาน (เพื่อให้ Scene ไม่มืด แม้เราจะเน้นแค่ UI)
+            scene.createDefaultCameraOrLight(true, true, true);
+            
+            scene.clearColor = new BABYLON.Color4(0.2, 0.2, 0.3, 1);
+
+            // --- ส่วน Code Snippet ของคุณ ---
+            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
+            advancedTexture.useSmallestIdeal = true;
+            advancedTexture.idealWidth = 1920;
+            advancedTexture.idealHeight = 1080;
+            advancedTexture.renderAtIdealSize = true;
+
+            // ตรวจสอบขนาดหน้าจอเพื่อเลือก Snippet ที่จะโหลด
+            // if (window.innerWidth < 500) {
+            //     console.log("Loading Mobile Layout...");
+            //     await advancedTexture.parseFromSnippetAsync("E92W52");
+            //     return scene;
+            // }
+            
+            console.log("Loading Desktop Layout...");
+            await advancedTexture.parseFromSnippetAsync("#PLRRO1#16");
+
+            console.log(`counts: ${advancedTexture.getChildren().length}`);
+            // let children = advancedTexture.getChildren()[0].children;
+            // children.forEach((child) => {
+            //     console.log("Child Name:", child.name);
+            //     if (child.name === "btn_start") {
+            //         child.onPointerUpObservable.add(() => {
+            //             console.log("Start Button Clicked!");
+            //         });
+            //     }
+            // });
+
+            // 3. ตรวจสอบว่าเจอปุ่มหรือไม่ (กัน Error กรณี Snippet ไม่มีปุ่มชื่อนี้)
+            var startBtn = advancedTexture.getControlByName("start_01");
+            if (startBtn) {
+                // ผูก Event เมื่อ "ปล่อยคลิก/นิ้ว" (onPointerUp) ให้ Alert
+                startBtn.onPointerUpObservable.add(function() {
+                    alert("test");
+                });
+                
+                // (ลูกเล่นเสริม) เปลี่ยน Cursor เป็นรูปมือเมื่อเอาเมาส์ชี้
+                startBtn.hoverCursor = "pointer";
+            } else {
+                console.warn("ไม่พบปุ่มชื่อ start_01 ใน Snippet นี้");
+            }
+
+            // --------------------------------
+            
+            return scene;
+        };
+
+        // เรียกใช้ฟังก์ชัน async และเริ่ม Render Loop
+        createScene().then(scene => {
+            engine.runRenderLoop(function () {
+                scene.render();
+            });
+        });
+
+        // ปรับขนาด Engine เมื่อหน้าต่าง Browser เปลี่ยนขนาด
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+    </script>
+</body>
+</html>
