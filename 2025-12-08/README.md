@@ -11,15 +11,15 @@ Welcome! Please add your name and today's date to the table below by submitting 
 
 | Seat | Name           | Date (YYYY-MM-DD) |
 |------|----------------|-------------------|
-| 1A   | [Your Name]    | 2025-12-07        |
-| 1B   | [Your Name]    | 2025-12-07        |
-| 1C   | [Your Name]    | 2025-12-07        |
-| 2A   | [Your Name]    | 2025-12-07        |
-| 2B   | [Your Name]    | 2025-12-07        |
-| 2C   | [Your Name]    | 2025-12-07        |
-| 3A   | [Your Name]    | 2025-12-07        |
-| 3B   | [Your Name]    | 2025-12-07        |
-| 3C   | [Your Name]    | 2025-12-07        |
+| 1A   | [Your Name]    | 2025-12-08        |
+| 1B   | [Your Name]    | 2025-12-08        |
+| 1C   | [Your Name]    | 2025-12-08        |
+| 2A   | [Your Name]    | 2025-12-08        |
+| 2B   | [Your Name]    | 2025-12-08        |
+| 2C   | [Your Name]    | 2025-12-08        |
+| 3A   | [Your Name]    | 2025-12-08        |
+| 3B   | [Your Name]    | 2025-12-08        |
+| 3C   | [Your Name]    | 2025-12-08        |
 
 ### How to Participate
 1. Fork this repository.
