@@ -12,7 +12,7 @@ Welcome! Please add your name and today's date to the table below by submitting 
 | Seat | Name           | Date (YYYY-MM-DD) |
 |------|----------------|-------------------|
 | 1A   | [Troy]    | 2025-12-13        |
-| 1B   | [Your Name]    | 2025-12-13        |
+| 1B   | [August] | 2025-12-13        |
 | 1C   | [Your Name]    | 2025-12-13        |
 | 2A   | [Your Name]    | 2025-12-13        |
 | 2B   | [Your Name]    | 2025-12-13        |
