@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <title>MDN Games: Babylon.js demo</title>
+    <style>
+      html,
+      body,
+      canvas {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!--  The local copy of Babylon.js -->
+    <!-- <script src="babylon.js"></script> -->
+    <!--  or loaded via CDN: -->
+    <script src="https://cdn.babylonjs.com/v7.34.1/babylon.js"></script>
+
+    <canvas id="render-canvas"></canvas>
+
+    <!-- <script>
+        const canvas = document.getElementById("render-canvas");
+        const engine = new BABYLON.Engine(canvas, true, {
+          preserveDrawingBuffer: false,
+          alpha: true,
+        });
+
+        const scene = new BABYLON.Scene(engine);
+        scene.clearColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+
+        const camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI / 2, 8, BABYLON.Vector3.Zero());
+        camera.attachControl(canvas, true);
+        const light = new BABYLON.PointLight("Point", new BABYLON.Vector3(5, 10, 5));
+
+
+        const spriteManagerPlayer = new BABYLON.SpriteManager("playerManager", "textures/player.png", 3, 64);
+        const player = new BABYLON.Sprite("player0", spriteManagerPlayer);
+
+        player.playAnimation(44, 44, true, 100);
+
+        function renderLoop() {
+          scene.render();
+        }
+        
+        engine.runRenderLoop(renderLoop);
+
+    </script> -->
+
+    <script>
+      const canvas = document.getElementById("render-canvas");
+      const engine = new BABYLON.Engine(canvas, true);
+
+      const scene = new BABYLON.Scene(engine);
+      scene.clearColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+
+      const camera = new BABYLON.ArcRotateCamera(
+        "Camera",
+        -Math.PI / 2,
+        Math.PI / 2,
+        8,
+        BABYLON.Vector3.Zero(),
+        scene
+      );
+      camera.attachControl(canvas, true);
+
+      const light = new BABYLON.PointLight(
+        "Point",
+        new BABYLON.Vector3(5, 10, 5),
+        scene
+      );
+
+      // Sprite
+      const spriteManagerPlayer = new BABYLON.SpriteManager(
+        "playerManager",
+        "textures/player.png",
+        3,
+        { width: 64, height: 64 },
+        scene
+      );
+
+      const player = new BABYLON.Sprite("player0", spriteManagerPlayer);
+      player.position.y = 0;
+      player.size = 1.5;
+
+      // ------------------------
+      // Movement & Animation
+      // ------------------------
+      const speed = 0.05;
+      let movingLeft = false;
+      let movingRight = false;
+      let state = "idle"; // "idle" | "walk"
+
+      function playIdle() {
+        if (state !== "idle") {
+          player.playAnimation(44, 44, true, 150); // idle frames
+          state = "idle";
+        }
+      }
+
+      function playWalk() {
+        if (state !== "walk") {
+        // 100 = 1 เฟรม ใช้เวลา 100 ms
+        // เท่ากับประมาณ 10 FPS (1000 / 100)
+          player.playAnimation(0, 9, true, 100); // walk frames
+          state = "walk";
+        }
+      }
+
+      function stopWalk() {
+        player.stopAnimation();
+        isPlaying = false;
+        playIdle();
+
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft" || e.key === "a") {
+          movingLeft = true;
+          playWalk();
+          player.invertU = false;
+        }
+
+        if (e.key === "ArrowRight" || e.key === "d") {
+          movingRight = true;
+          playWalk();
+          player.invertU = true;
+        }
+      });
+
+      window.addEventListener("keyup", (e) => {
+        if (e.key === "ArrowLeft" || e.key === "a") {
+          movingLeft = false;
+        }
+
+        if (e.key === "ArrowRight" || e.key === "d") {
+          movingRight = false;
+        }
+
+        if (!movingLeft && !movingRight) {
+          playIdle();
+        }
+      });
+
+      engine.runRenderLoop(() => {
+        if (movingLeft) {
+          player.position.x -= speed;
+        }
+        if (movingRight) {
+          player.position.x += speed;
+        }
+
+        scene.render();
+      });
+    
+    </script>
+  
+  </body>
+</html>
