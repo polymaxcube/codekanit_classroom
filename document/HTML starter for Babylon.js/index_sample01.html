@@ -26,21 +26,21 @@
     <script>
         const canvas = document.getElementById("render-canvas");
         const engine = new BABYLON.Engine(canvas, true, {
-        preserveDrawingBuffer: false,
-        alpha: true,
+          preserveDrawingBuffer: false,
+          alpha: true,
         });
 
         const scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color3(0.8, 0.8, 0.8);
         const camera = new BABYLON.FreeCamera(
-        "camera",
-        new BABYLON.Vector3(0, 0, -10),
-        scene,
+          "camera",
+          new BABYLON.Vector3(0, 0, -10),
+          scene,
         );
         const light = new BABYLON.PointLight(
-        "light",
-        new BABYLON.Vector3(10, 10, 0),
-        scene,
+          "light",
+          new BABYLON.Vector3(10, 10, 0),
+          scene,
         );
 
         const box = BABYLON.Mesh.CreateBox("box", 2, scene);
@@ -69,11 +69,11 @@
 
         let t = 0;
         function renderLoop() {
-        scene.render();
-        t -= 0.01;
-        box.rotation.y = t * 2;
-        torus.scaling.z = Math.abs(Math.sin(t * 2)) + 0.5;
-        cylinder.position.y = Math.sin(t * 3);
+          scene.render();
+          t -= 0.01;
+          box.rotation.y = t * 2;
+          torus.scaling.z = Math.abs(Math.sin(t * 2)) + 0.5;
+          cylinder.position.y = Math.sin(t * 3);
         }
         engine.runRenderLoop(renderLoop);
     </script>
